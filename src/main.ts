@@ -10,5 +10,11 @@ async function bootstrap() {
   // const reflector = new Reflector()
   // app.useGlobalGuards(new AtGUard(reflector));
   await app.listen(3000);
+  app.enableCors({
+    allowedHeaders: 'Content-Type, Accept, Authorization',
+    origin: 'http://192.168.1.10:3000',
+    credentials: true,
+    methods: 'POST,GET,DELETE,PATCH,OPTIONS,PUT',
+  });
 }
 bootstrap();

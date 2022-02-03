@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Injectable, Post } from '@nestjs/common';
+import { BadRequestException, Body, Get, Injectable, Param, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -52,5 +52,10 @@ export class UserService {
   async findById(userId) {
     return this.userRepository.findOne(userId);
   }
+
+
+    // async get(@Param('id') id: number) {
+    //     return this.userRepository.findOne(id)
+    // }
 
 }
