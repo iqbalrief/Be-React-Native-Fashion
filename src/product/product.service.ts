@@ -3,11 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProductCreateDto } from './dto/product-create.dto';
 import { Product } from './entity/product.entity';
+import { Productsize } from './entity/product.size.entity';
 
 @Injectable()
 export class ProductService {
     constructor(
-    @InjectRepository(Product) private readonly productRepository: Repository<Product>
+    @InjectRepository(Product) private readonly productRepository: Repository<Product>,
+    @InjectRepository(Productsize) private readonly productSizeRepository: Repository<Productsize>
 )   {}
       
     async create(dto: ProductCreateDto, files: any) {
@@ -16,7 +18,9 @@ export class ProductService {
     produk.description = dto.description
     produk.title = dto.title
     produk.price = dto.price
-
+    produk.size = await Promise.all(dto.size.map(size => {
+      return this.productSizeRepository.findOne({ where: { name: size } })
+  }))
     const img = files.map((file: any) => {
         return {filename: file.filename}
     })

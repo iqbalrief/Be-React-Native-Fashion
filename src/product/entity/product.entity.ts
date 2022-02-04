@@ -1,6 +1,7 @@
 import { Cart } from "src/cart/entity/cart.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn  } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn  } from "typeorm";
 import { Upload } from "./product.image.entity";
+import { Productsize } from "./product.size.entity";
 
 @Entity('products')
 export class Product {
@@ -29,7 +30,14 @@ export class Product {
 
     @Column()
     price: number;
+    
 
-
+    @JoinTable()
+    @ManyToMany(
+        ()=>Productsize,
+        (size)=>size.name,
+        {cascade: true}
+    )
+    size: Productsize[]
     
 }

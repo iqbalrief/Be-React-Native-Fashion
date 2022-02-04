@@ -11,5 +11,10 @@ export class ProductCreateDto {
     image: string;
 
     @IsNotEmpty()
+    size: string[];
+
+    @IsNotEmpty()
     price: number
+
+   
 }

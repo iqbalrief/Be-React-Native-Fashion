@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Res,
   UploadedFiles,
   UseInterceptors,
@@ -17,6 +18,7 @@ import {
 import { diskStorage } from 'multer';
 import { Public } from 'src/auth/common/decorators';
 import { ProductCreateDto } from './dto/product-create.dto';
+import { ProductUpdateDto } from './dto/product-update.dto copy';
 import { ProductService } from './product.service';
 import { editFileName, imageFileFilter } from './product.upload';
 
