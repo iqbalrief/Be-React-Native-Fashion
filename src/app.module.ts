@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AtGUard } from './auth/common/guards';
 import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -16,9 +17,9 @@ import { CartModule } from './cart/cart.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3308,
+      port: 3306,
       username: 'root',
-      password: 'root',
+      password: '',
       database: 'fashion',
       autoLoadEntities: true,
       synchronize: true,
@@ -26,6 +27,7 @@ import { CartModule } from './cart/cart.module';
     AuthModule,
     ProductModule,
     CartModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [

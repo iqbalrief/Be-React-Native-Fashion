@@ -30,7 +30,9 @@ export class CartController {
 
   @Get("all")
   getCartAll(
+    @GetCurrentUserId()
+    userId: number,
   ) {
-    return this.cartService.getProductsAll();
+    return this.cartService.getProductsAll(userId);
   }
 }

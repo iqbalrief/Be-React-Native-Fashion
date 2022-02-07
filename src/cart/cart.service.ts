@@ -34,8 +34,12 @@ export class CartService {
         return await this.cartRepository.save({...currentcart, ...dto})
     }
 
-    async getProductsAll() { 
-        return await this.cartRepository.find();
+    async getProductsAll(userId) { 
+        return await this.cartRepository.find
+        ({      
+                relations:['product', 'user'],
+                where:{user: {id: userId}}
+            });
       }
     
 } 

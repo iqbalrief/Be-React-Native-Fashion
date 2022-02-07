@@ -12,7 +12,7 @@ async function bootstrap() {
   await app.listen(3000);
   app.enableCors({
     allowedHeaders: 'Content-Type, Accept, Authorization',
-    origin: 'http://192.168.1.10:3000',
+    origin: 'http://192.168.1.12:3000',
     credentials: true,
     methods: 'POST,GET,DELETE,PATCH,OPTIONS,PUT',
   });
