@@ -33,5 +33,9 @@ export class CartService {
         let {...currentcart} = await this.cartRepository.findOne(id)
         return await this.cartRepository.save({...currentcart, ...dto})
     }
+
+    async getProductsAll() { 
+        return await this.cartRepository.find();
+      }
     
 } 

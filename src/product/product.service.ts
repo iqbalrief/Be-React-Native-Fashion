@@ -30,11 +30,11 @@ export class ProductService {
   }
 
   async getProducts(id: number): Promise<Product> {
-      return await this.productRepository.findOne(id, {relations: ['image']});
+      return await this.productRepository.findOne(id, {relations: ['image', 'size']});
     }
 
     async getProductsAll() { 
-        return await this.productRepository.find({relations: ['image']});
+        return await this.productRepository.find({relations: ['image', 'size']});
       }
 
       async delete(id: number) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UserInterfaceIdiom } from 'expo-constants';
 import {
   GetCurrentUser,
@@ -26,5 +26,11 @@ export class CartController {
   @Put(':id')
   updateCart(@Param('id')cartId: number, @Body() dto: CartUpdateDto) {
     return this.cartService.updateCart(cartId, dto);
+  }
+
+  @Get("all")
+  getCartAll(
+  ) {
+    return this.cartService.getProductsAll();
   }
 }
