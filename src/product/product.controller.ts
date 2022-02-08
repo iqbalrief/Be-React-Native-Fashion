@@ -70,6 +70,14 @@ export class ProductController {
   ) {
      res.sendFile(path,{root: 'image'}); 
   }
+
+
+  @Public()
+  @Put(':id')
+  updateCart(@Param('id')productId: number, @Body() dto: ProductUpdateDto) {
+    return this.productsService.updateProduct(productId, dto);
+  }
+
 }
 
 

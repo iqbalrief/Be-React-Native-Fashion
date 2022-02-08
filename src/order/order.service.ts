@@ -11,7 +11,6 @@ export class OrderService {
     constructor(
     @InjectRepository(Order) private readonly orderRepository: Repository<Order>,
     @InjectRepository(Cart) private readonly cartRepository: Repository<Cart>,
-    private readonly OrderService: OrderService,
     private readonly userService: UserService,
     
     ){}
@@ -25,7 +24,9 @@ export class OrderService {
             });
         order.shipingfee = dto.shipingfee
         order.totalprice = dto.totalprice
-        order.cart.concat(cartId) 
+        order.cart = cartId 
+        console.log(cartId);
+        // console.log(order.cart)
         return await this.orderRepository.save(order)
       }
         
