@@ -1,5 +1,6 @@
 import { Injectable, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { dematerialize } from 'rxjs';
 import { Cart } from 'src/cart/entity/cart.entity';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
@@ -26,7 +27,13 @@ export class OrderService {
         order.totalprice = dto.totalprice
         order.cart = cartId 
         console.log(cartId);
-        // console.log(order.cart)
+       
+        try {
+          const result = await this.cartRepository.delete({ user: { id: userId } });
+          console.log('result', result)
+        } catch (error) {
+          console.log("error", error)
+        }
         return await this.orderRepository.save(order)
       }
         
